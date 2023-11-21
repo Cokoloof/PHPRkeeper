@@ -2,8 +2,8 @@
 
 namespace Tech\Rkeeper\XmlConverter;
 
-use \Traits\MenuTrait;
-use \Traits\OrderTrait;
+use Tech\Rkeeper\XmlConverter\Traits\MenuTrait;
+use Tech\Rkeeper\XmlConverter\Traits\OrderTrait;
 
 
 class XmlDomConverter{
