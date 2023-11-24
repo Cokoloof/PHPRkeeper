@@ -1,25 +1,18 @@
-<?php
+<?
 
 namespace Tech\Rkeeper\ApiClient;
-use Tech\Rkeeper\Factory\ApiClientFactory;
-use Tech\Rkeeper\XmlConverter\XmlDomConverter;
-use Tech\Rkeeper\Client\IClient;
-use Tech\Rkeeper\Configurator\Configurator;
-use Tech\Rkeeper\Logger\Logger;
 
+use Tech\Rkeeper\Services\Menuservice;
+use Tech\Rkeeper\Services\OrderService;
 
-abstract class ApiClient{
-
-    protected XmlDomConverter $converter;
-    protected IClient $client;        
-    protected Configurator $configurator;
-    protected Logger $logger;
-
-    public function __construct(ApiClientFactory $factory, Configurator $configurator, Logger $logger = null)
+class ApiClient extends BaseApiClient{
+    public function order(): OrderService
     {
-        $this->converter = $factory->createConverter();
-        $this->client = $factory->createClient();
-        $this->configurator = $configurator;
-        $this->logger = $logger;
+        return new OrderService($this->client, $this->converter);
+    }
+
+    public function menu(): MenuService
+    {
+        return new MenuService($this->client, $this->converter);
     }
 }
